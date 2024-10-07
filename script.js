@@ -1,8 +1,8 @@
 window.onload = function() {
     const audio = document.getElementById('audio');
     const playButton = document.getElementById('play-button');
-    const songTitle = "Mega Trepa Trepa das Sombras"; // Atualizar com o nome real
-    const artistName = "MC Renatinho Falcão, DJ Léo da 17, DJ Wizard"; // Atualizar com o nome real
+    const songTitle = "Mega Trepa Trepa das Sombras";
+    const artistName = "MC Renatinho Falcão, DJ Léo da 17, DJ Wizard";
 
     // Solicitar permissão para enviar notificações
     Notification.requestPermission().then(permission => {
@@ -30,10 +30,16 @@ window.onload = function() {
         }
     };
 
+    // Repetir a música
+    audio.onended = function() {
+        audio.currentTime = 0; // Volta ao início
+        audio.play(); // Recomeça a tocar
+    };
+
     function showNotification() {
         const notification = new Notification("Música Tocando!", {
             body: `${songTitle} - ${artistName}`,
-            icon: "Mega Trepa Trepa das Sombras_.jpg" // Ícone da notificação
+            icon: "Mega Trepa Trepa das Sombras_.jpg"
         });
 
         // Fechar a notificação após 5 segundos
@@ -42,5 +48,4 @@ window.onload = function() {
         }, 5000);
     }
 };
-
 
